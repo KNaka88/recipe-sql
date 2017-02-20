@@ -5,7 +5,7 @@
         private $name;
         private $rating;
 
-        function __construct($name, $id = null, $rating)
+        function __construct($name, $rating, $id = null)
         {
             $this->name = $name;
             $this->id = $id;
@@ -40,19 +40,19 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO recipe (name) VALUES ('{$this->getName()}')");
-            $GLOBALS['DB']->exec("INSERT INTO recipe (rating) VALUES ('{$this->getRating()}')");
+            $GLOBALS['DB']->exec("INSERT INTO recipe (name, rating) VALUES ('{$this->getName()}', '{$this->getRating()}')");
             $this->id= $GLOBALS['DB']->lastInsertId();
         }
 
         static function getAll()
         {
-            $returned_categories = $GLOBALS['DB']->query("SELECT * FROM recipe;");
+            $returned_recipes = $GLOBALS['DB']->query("SELECT * FROM recipe;");
             $recipes = array();
             foreach($returned_recipes as $recipe) {
                 $name = $recipe['name'];
                 $id = $recipe['id'];
-                $new_recipe = new Recipe($name, $id, $rating);
+                $rating = $recipe['rating'];
+                $new_recipe = new Recipe($name, $rating, $id);
                 array_push($recipes, $new_recipe);
             }
             return $recipes;
@@ -65,7 +65,7 @@
 
         static function find($search_id)
         {
-            $found_category = null;
+            $found_recipe = null;
             $recipes = Recipe::getAll();
             foreach($recipes as $recipe) {
                 $recipe_id = $recipe->getId();

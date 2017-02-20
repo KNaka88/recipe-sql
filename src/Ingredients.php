@@ -35,9 +35,9 @@
         {
             $returned_items = $GLOBALS['DB']->query("SELECT * FROM ingredients;");
             $ingredients = array();
-            foreach($returned_ingredients as $ingredient) {
-                $item = $ingredient['item'];
-                $id = $ingredient['id'];
+            foreach($returned_items as $returned_item) {
+                $item = $returned_item['item'];
+                $id = $returned_item['id'];
                 $new_ingredient = new Ingredients($item, $id);
                 array_push($ingredients, $new_ingredient);
             }

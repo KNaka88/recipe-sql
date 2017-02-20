@@ -79,7 +79,7 @@
         function test_getID()
         {
             //Arrange
-            $description = "spaghetti";
+            $name = "spaghetti";
             $rating = 3;
             $id = 1;
             $test_recipe = new Recipe($name, $rating, $id);
