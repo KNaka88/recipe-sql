@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <title>To Do</title>
+  </head>
+  <body>
+      <h3>You added a new recipe to the database!</h3>
+      <ul>
+          <h1>{{ newrecipes.getName }}</h1>
+
+          {% for newrecipe in newrecipes %}
+
+              <li>{{ newrecipe.getName }}</li>
+              <li>{{ newrecipe.getRating }}</li>
+          {% endfor %}
+
+          <a href="/"><button class="btn btn-info">Back to Top</button></a>
+      </ul>
+
+  </body>
+</html>
